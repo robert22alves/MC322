@@ -29,7 +29,31 @@ public class Livro {
     }
 
     public void emprestimos() {
+        if (qtd_total - qtd_disponivel == 0){
+            System.out.println("Nao ha emprestimos desse livro");
+            return;
+        }
 
+        System.out.println("Emprestimo(s):");
+        for (int i = 0; i < qtd_total - qtd_disponivel; i++){
+            System.out.println(emprestimos[i].funcao + " " + emprestimos[i].membro + " (" + emprestimos[i].registro + ") | " + emprestimos[i].data_emprestimo + " | " + emprestimos[i].data_devolucao);
+        }
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getEditora() {
+        return editora;
+    }
+
+    public String getEdicao() {
+        return edicao;
     }
 
     public String getIsbn() {
@@ -43,7 +67,4 @@ public class Livro {
     public int getQtd_disponivel() {
         return qtd_disponivel;
     }
-
-    
-
 }
