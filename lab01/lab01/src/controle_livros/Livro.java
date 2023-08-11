@@ -1,70 +1,45 @@
 package controle_livros;
 
 public class Livro {
-    //Identificacao
-    private String titulo;
-    private String autor;
-    private String editora;
-    private String edicao;
-    private String isbn;
+    private Livro_id info;
+    private Livro_emp controle;
 
-    //Controle de Quantidade
-    private int qtd_total;
-    private int qtd_disponivel;
-    private Emp_livros[] emprestimos;
-
-    public Livro(String titulo, String autor, String editora, String edicao, String isbn, int qtd){
-        this.titulo = titulo;
-        this.autor = autor;
-        this.editora = editora;
-        this.edicao = edicao;
-        this.isbn = isbn;
-
-        this.qtd_total = this.qtd_disponivel = qtd;
-        this.emprestimos = new Emp_livros[qtd_total];
+    public Livro(String titulo, String autor, String editora, String edicao, String isbn, int unidades){
+        this.info = new Livro_id(titulo, autor, editora, edicao, isbn);
+        this.controle = new Livro_emp(unidades);
     }
 
-    public void detalhes() {
-        System.out.println("Livro: " + titulo + "\nAutor: " + autor + "\nEdicao" + edicao + "\nEditora: " + editora);
+    public void imprimirInfo(){
+        System.out.println("Titulo: " + info.getTitulo());
+        System.out.println("Autor: " + info.getAutor());
+        System.out.println("Edicao: " + info.getEdicao());
+        System.out.println("Editora: " + info.getEditora());
     }
 
-    public void emprestimos() {
-        if (qtd_total - qtd_disponivel == 0){
-            System.out.println("Nao ha emprestimos desse livro");
-            return;
+    public void imprimirEmps(){
+        for(int i = 0; i < controle.total - controle.disponiveis; i++)
+            System.out.println(controle.emprestimos[i] + " devolver " + controle.devolucoes[i]);
+    }
+
+    public boolean add_Emprestimo(String membro, String devolucao) {
+        if(controle.disponiveis == 0){
+            System.out.println("Nao ha unidades disponiveis");
+            return false;
         }
 
-        System.out.println("Emprestimo(s):");
-        for (int i = 0; i < qtd_total - qtd_disponivel; i++){
-            System.out.println(emprestimos[i].funcao + " " + emprestimos[i].membro + " (" + emprestimos[i].registro + ") | " + emprestimos[i].data_emprestimo + " | " + emprestimos[i].data_devolucao);
-        }
+        controle.add(membro, devolucao);
+        return true;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public void del_Emprestimo(String membro) {
+        controle.remover(membro);
     }
 
-    public String getAutor() {
-        return autor;
+    public Livro_id getInfo() {
+        return info;
     }
 
-    public String getEditora() {
-        return editora;
-    }
-
-    public String getEdicao() {
-        return edicao;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public int getQtd_total() {
-        return qtd_total;
-    }
-
-    public int getQtd_disponivel() {
-        return qtd_disponivel;
+    public Livro_emp getControle() {
+        return controle;
     }
 }
