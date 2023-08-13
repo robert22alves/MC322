@@ -36,6 +36,10 @@ public class Membro {
         this.periodos[emprestimos][0] = dt_emp;
         this.periodos[emprestimos][1] = dt_dev;
         this.emprestimos++;
+
+        if(info.getAtividade() == "Nenhuma"){
+            info.setAtividade("Emprestimo");
+        }
     }
 
     public void remover(Livro_id livro){
