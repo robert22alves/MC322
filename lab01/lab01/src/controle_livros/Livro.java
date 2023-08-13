@@ -2,11 +2,16 @@ package controle_livros;
 
 public class Livro {
     private Livro_id info;
-    private Livro_emp controle;
+    private int total; //total de unidades
+    private int disponiveis; //unidades disponiveis 
+    private String[] membros; 
+    private String[][] periodos; //data de emprestimo e devolucao
 
     public Livro(String titulo, String autor, String editora, String edicao, String isbn, int unidades){
         this.info = new Livro_id(titulo, autor, editora, edicao, isbn);
-        this.controle = new Livro_emp(unidades);
+        this.total = this.disponiveis = unidades;
+        this.membros = new String[unidades];
+        this.periodos = new String[unidades][2];
     }
 
     public void imprimirInfo(){
@@ -14,32 +19,42 @@ public class Livro {
         System.out.println("Autor: " + info.getAutor());
         System.out.println("Edicao: " + info.getEdicao());
         System.out.println("Editora: " + info.getEditora());
+        System.out.println("Quantidade: " + disponiveis + " disponiveis");
     }
 
     public void imprimirEmps(){
-        for(int i = 0; i < controle.total - controle.disponiveis; i++)
-            System.out.println(controle.emprestimos[i] + " devolver " + controle.devolucoes[i]);
+        for(int i = 0; i < total - disponiveis; i++)
+            System.out.println(membros[i] + " | emprestada" + periodos[i][0] + ", devolver " + periodos[i][1]);
     }
 
-    public boolean add_Emprestimo(String membro, String devolucao) {
-        if(controle.disponiveis == 0){
-            System.out.println("Nao ha unidades disponiveis");
-            return false;
-        }
-
-        controle.add(membro, devolucao);
-        return true;
+    public void adicionar(String membro, String dt_emp, String dt_dev){
+        this.membros[total - disponiveis] = membro;
+        this.periodos[total - disponiveis][0] = dt_emp;
+        this.periodos[total - disponiveis][1] = dt_dev;
+        this.disponiveis--;
     }
 
-    public void del_Emprestimo(String membro) {
-        controle.remover(membro);
+    public void remover(String membro){
+        for (int i = 0, j = total - disponiveis; i < j; i++)
+            if(membros[i] == membro){
+                for (j--; i < j; i++){
+                    membros[i] = membros[i + 1];
+                    periodos[i] = periodos[i + 1];
+                }
+                this.disponiveis++;
+                return;
+            }
     }
 
     public Livro_id getInfo() {
         return info;
     }
 
-    public Livro_emp getControle() {
-        return controle;
+    public int getTotal() {
+        return total;
+    }
+
+    public int getDisponiveis() {
+        return disponiveis;
     }
 }
