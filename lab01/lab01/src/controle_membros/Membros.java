@@ -1,4 +1,4 @@
-import controle_membros.Membro;
+package controle_membros;
 
 public class Membros {
     private Membro[] membros;
