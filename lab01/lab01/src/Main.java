@@ -1,4 +1,10 @@
+package terminal;
+
+import emprestimo.Ctrl_Emprestimo;
+import funcionario.Funcionario;
+import library.Biblioteca;
 import controle_livros.Livro;
+import controle_membros.Membros;
 import controle_membros.Membro;
 
 public class Main {
