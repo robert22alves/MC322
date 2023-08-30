@@ -1,22 +1,22 @@
 package system;
 
-import dStructure_pack.Hash_table;
+import dStructure_pack.Hash_AVLtree;
 import multimedia_pack.Audio_CD;
 import multimedia_pack.E_Book;
 import multimedia_pack.P_Book;
 import multimedia_pack.Video_DVD;
 
 public class Collection {
-    private Hash_table<P_Book> books;
-    private Hash_table<E_Book> ebooks;
-    private Hash_table<Video_DVD> dvds;
-    private Hash_table<Audio_CD> cds;
+    private Hash_AVLtree<P_Book> books;
+    private Hash_AVLtree<E_Book> ebooks;
+    private Hash_AVLtree<Video_DVD> dvds;
+    private Hash_AVLtree<Audio_CD> cds;
 
     public Collection() {
-        this.books = new Hash_table<>(13);
-        this.ebooks = new Hash_table<>(13);
-        this.dvds = new Hash_table<>(13);
-        this.cds = new Hash_table<>(13);
+        this.books = new Hash_AVLtree<>(13);
+        this.ebooks = new Hash_AVLtree<>(13);
+        this.dvds = new Hash_AVLtree<>(13);
+        this.cds = new Hash_AVLtree<>(13);
     }
 
     public void addBook(P_Book book) {
