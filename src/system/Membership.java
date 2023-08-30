@@ -1,22 +1,22 @@
 package system;
 
-import dStructure_pack.Hash_table;
+import dStructure_pack.Hash_AVLtree;
 import libmembers_pack.Grad;
 import libmembers_pack.Pgrad;
 import libmembers_pack.Professor;
 import libmembers_pack.Staff;
 
 public class Membership {
-    private Hash_table<Professor> professors;
-    private Hash_table<Grad> graduates;
-    private Hash_table<Pgrad> postgraduates;
-    private Hash_table<Staff> staff;
+    private Hash_AVLtree<Professor> professors;
+    private Hash_AVLtree<Grad> graduates;
+    private Hash_AVLtree<Pgrad> postgraduates;
+    private Hash_AVLtree<Staff> staff;
 
     public Membership() {
-        this.professors = new Hash_table<>(13);
-        this.graduates = new Hash_table<>(13);
-        this.postgraduates = new Hash_table<>(13);
-        this.staff = new Hash_table<>(13);
+        this.professors = new Hash_AVLtree<>(13);
+        this.graduates = new Hash_AVLtree<>(13);
+        this.postgraduates = new Hash_AVLtree<>(13);
+        this.staff = new Hash_AVLtree<>(13);
     }
 
     public void addGrad(Grad g) {
