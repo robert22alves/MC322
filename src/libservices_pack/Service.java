@@ -26,7 +26,7 @@ public class Service {
     }
 
     public static void makeRenewal(Lending lending, String renewalDate, String returnDate) {
-        if (!lending.getItem().isReserved()){
+        if (!lending.getItem().isReserved() && !lending.isOverdue()){
             lending.getMember().addRenewal(new Renewal(lending, renewalDate, returnDate));
         }
         else {
