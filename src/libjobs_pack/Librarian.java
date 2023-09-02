@@ -1,9 +1,9 @@
 package libjobs_pack;
 
-import miscellaneous.Person;
+import libmembers_pack.Staff;
 
-public class Librarian extends Person{
-    public Librarian(String firstname, String surname, int cpf) {
-        super(firstname, surname, cpf);
+public class Librarian extends Staff{
+    public Librarian(String firstname, String surname, int cpf, int id) {
+        super(firstname, surname, cpf, id);
     }
 }

@@ -1,41 +1,58 @@
 package multimedia_pack;
 
-import java.util.ArrayList;
-
 import libservices_pack.Lending;
 
 public abstract class Item {
     private String title;
 
     private float price;
-    private float fine;
 
-    private ArrayList<Lending> lending; //Emprestimos atuais
+    private Lending lending; //Emprestimo atual
+    private boolean isAvailable = true;
+    private boolean isReserved = false;
 
-    public Item(String title, float price, float fine) {
+    public Item(String title, float price) {
         this.title = title;
         this.price = price;
-        this.fine = fine;
     }
 
-    public abstract boolean checkLending();
+    public boolean canLending() {
+        return (isAvailable && !isReserved);
+    }
     
-    public void addLending(Lending l) {
-        getLending().add(l);
+    public void makeLending(Lending l) {
+        lending = l;
+        isAvailable = false;
+    }
+
+    public void makeReturn() {
+        lending = null;
+        isAvailable = true;
     }
 
     //Getters
     public float getPrice() {
         return price;
     }
-    public float getFine() {
-        return fine;
-    }
     public String getTitle() {
         return title;
     }
-    public ArrayList<Lending> getLending() {
+    public Lending getLending() {
         return lending;
+    }
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public boolean isReserved() {
+        return isReserved;
+    }
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+
+    public void setReserved(boolean isReserved) {
+        this.isReserved = isReserved;
     }
 
     @Override
