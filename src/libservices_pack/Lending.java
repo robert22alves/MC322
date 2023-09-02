@@ -26,6 +26,10 @@ public class Lending {
         this.fine = member.getFineOd();
     }
     
+    public void makeRenewal(String new_returnDate){
+        returnDate = new_returnDate;
+    }
+
     public Item getItem() {
         return item;
     }

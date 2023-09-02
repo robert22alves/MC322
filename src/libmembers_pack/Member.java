@@ -79,6 +79,14 @@ public abstract class Member extends Person{
         }
     }
 
+    public void addRenewal(Renewal r) {        
+        renewal.add(r);
+    }
+
+    public void addReserve(Reserve r) {        
+        reserve.add(r);
+    }
+
     public void payFine() {
         fine = 0;
     }
