@@ -6,8 +6,8 @@ public abstract class Book extends Item{
     private String subject;
     private int edition;
 
-    public Book(String title, String author, String publisher, String subject, int edition, float price, float fine) {
-        super(title, price, fine);
+    public Book(String title, String author, String publisher, String subject, int edition, float price) {
+        super(title, price);
         this.author = author;
         this.publisher = publisher;
         this.subject = subject;
