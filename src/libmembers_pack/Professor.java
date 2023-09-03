@@ -1,6 +1,5 @@
 package libmembers_pack;
 
-// class professor
 public class Professor extends Member{
     private String institute;
 

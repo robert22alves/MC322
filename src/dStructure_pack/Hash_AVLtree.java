@@ -1,29 +1,39 @@
 package dStructure_pack;
 
-public class AVL_tree<T> {
-    private class node {
+import java.util.ArrayList;
+
+public class Hash_AVLtree<T> {
+    // Nó da Árvore AVL
+    private class Node {
         T data;
-        node left;
-        node right;
+        Node left;
+        Node right;
         int b_factor;
         int height;
 
-        public node(T data) {
+        public Node(T data) {
             this.data = data;
             this.left = this.right = null;
             this.b_factor = this.height =  0;
         }
     }
 
-    private node root;
-    protected int count;
+    // Map Hash das raizes da Árvore AVL
+    private ArrayList<ArrayList<Node>> map;
+    private int count; // total de elementos
 
-    public AVL_tree() {
-        this.root = null;
+    public Hash_AVLtree(int size) {
         this.count = 0;
+        this.map = new ArrayList<>(size);
+
+        for (int i = 0; i < size; i++){
+            map.set(i, new ArrayList<>(size));
+            for (int j = 0; j < size; j++)
+                map.get(i).set(j, null);
+        }
     }
 
-    private void updateNode(node n) {
+    private void updateNode(Node n) {
         int l_height = (n.left == null) ? 0 : n.left.height + 1;
         int r_height = (n.right == null) ? 0 : n.right.height + 1;
 
@@ -31,9 +41,9 @@ public class AVL_tree<T> {
         n.height = (l_height >= r_height) ? l_height : r_height;
     }
 
-    private node leftRotate(node n) {
-        node c = n.right;
-        node cc = c.left;
+    private Node leftRotate(Node n) {
+        Node c = n.right;
+        Node cc = c.left;
         c.left = n;
         n.right = cc;
 
@@ -43,20 +53,19 @@ public class AVL_tree<T> {
         return c;
     }
 
-    private node rightRotate(node n) {
-        node c = n.left;
-        node cc = c.right;
+    private Node rightRotate(Node n) {
+        Node c = n.left;
+        Node cc = c.right;
         c.right = n;
         n.left = cc;
 
         updateNode(n);
         updateNode(c);
-        count++;
 
         return c;
     }
     
-    private node rotation(node n) {
+    private Node rotation(Node n) {
         if (n.b_factor == -2){
             if (n.right.b_factor == 1)
                 n.right = rightRotate(n.right);
@@ -74,9 +83,11 @@ public class AVL_tree<T> {
         return n;
     }
 
-    private node insertion(T data, node n) {
-        if (n == null)
-            return new node(data);
+    private Node insertion(T data, Node n) {
+        if (n == null){
+            count++;
+            return new Node(data);
+        }
 
         int i = n.data.toString().compareToIgnoreCase(data.toString());
         if (i > 0)
@@ -91,7 +102,7 @@ public class AVL_tree<T> {
         return rotation(n);
     }
 
-    private node search(String data, node n) {
+    private Node search(String data, Node n) {
         if (n == null)
             return null;
 
@@ -104,11 +115,37 @@ public class AVL_tree<T> {
         return n;
     }
 
+    private int h1(String data) {
+        return (data.hashCode() & 0x7fffffff) % map.size();
+    }
+
+    private int h2(String data) {
+        return 1 + (data.hashCode() & 0x7fffffff) % (map.size() - 1);
+    }
+
+    private int h1(T data) {
+        return (data.hashCode() & 0x7fffffff) % map.size();
+    }
+
+    private int h2(T data) {
+        return 1 + (data.hashCode() & 0x7fffffff) % (map.size() - 1);
+    }
+
     public T getData(String data) {
-        return search(data, root).data;
+        int h1 = h1(data);
+        int h2 = h2(data);
+        int h = (h1 + h2) % map.size();
+        Node n = map.get(h1).get(h);
+
+        return search(data, n).data;
     }
 
     public void addData(T data) {
-        this.root = insertion(data, root);
+        int h1 = h1(data);
+        int h2 = h2(data);
+        int h = (h1 + h2) % map.size();
+        Node n = map.get(h1).get(h);
+
+        insertion(data, n);
     }
 }

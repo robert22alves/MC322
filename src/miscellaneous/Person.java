@@ -1,6 +1,5 @@
 package miscellaneous;
 
-// class person
 public abstract class Person {
     private int cpf;
     private String firstname;
