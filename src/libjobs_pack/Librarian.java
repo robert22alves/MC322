@@ -12,8 +12,8 @@ public class Librarian extends Staff{
     private Collection itens;
     private Membership membership;
 
-    public Librarian(String firstname, String surname, int cpf, int id, Collection itens, Membership membership) {
-        super(firstname, surname, cpf, id);
+    public Librarian(String firstname, String surname, int cpf, int id, Collection itens, Membership membership, String contact, String address, String registration_date) {
+        super(firstname, surname, cpf, id, contact, address, registration_date);
         this.itens = itens;
         this.membership = membership;
     }

@@ -1,5 +1,7 @@
 package multimedia_pack;
 
+import libservices_pack.Lending;
+
 public class P_Book extends Book{
 
     private int num_copies; //numero total de copias

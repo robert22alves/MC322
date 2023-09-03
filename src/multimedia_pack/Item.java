@@ -9,6 +9,7 @@ public abstract class Item {
     private String synopsis;
     private String gender;
     private float price;
+    private float fine;
 
     private Lending lending; //Emprestimo atual
     private boolean isAvailable = true;
