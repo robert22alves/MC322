@@ -18,6 +18,7 @@ public abstract class Member extends Person{
      * 1 -> Emprestimo
      * 2 -> Suspenso
      */
+    private String registration_date;
     private int total; //Total de Emprestimos Possiveis
     private int borMade; //Emprestimos Feitos
     private int borDays; //Tempo de Emprestimo em dias
@@ -30,8 +31,8 @@ public abstract class Member extends Person{
     private ArrayList<Renewal> renewal; //Pedido de Renovacao
     private ArrayList<Reserve> reserve; //Pedido de Reserva
     
-    public Member(String firstname, String surname, int cpf, int id, int total, int borDays, float fine) {
-        super(firstname, surname, cpf);
+    public Member(String firstname, String surname, int cpf, int id, int total, int borDays, float fine, String contact, String address, String registration_date) {
+        super(firstname, surname, cpf, contact, address);
         this.id = id;
         this.activity = 0;
         this.total = total;
@@ -92,6 +93,10 @@ public abstract class Member extends Person{
     }
 
     //Getters
+    public String getRegistration_date() {
+        return registration_date;
+    }
+
     public int getId() {
         return id;
     }
