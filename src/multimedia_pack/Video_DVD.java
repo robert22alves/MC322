@@ -11,7 +11,7 @@ public class Video_DVD extends Media{
         this.casting = casting;
     }
 
-    public boolean checkLending() {
+    public boolean canLending() {
         return true;
     }
 

@@ -21,6 +21,7 @@ public abstract class Member extends Person{
     private int total; //Total de Emprestimos Possiveis
     private int borMade; //Emprestimos Feitos
     private int borDays; //Tempo de Emprestimo em dias
+    private float fineOd; // Multa por dia de atraso
     private float fine; //Multa a pagar
 
     //Historico
@@ -29,7 +30,7 @@ public abstract class Member extends Person{
     private ArrayList<Renewal> renewal; //Pedido de Renovacao
     private ArrayList<Reserve> reserve; //Pedido de Reserva
     
-    public Member(String firstname, String surname, int cpf, int id, int total, int borDays) {
+    public Member(String firstname, String surname, int cpf, int id, int total, int borDays, float fine) {
         super(firstname, surname, cpf);
         this.id = id;
         this.activity = 0;
@@ -37,6 +38,7 @@ public abstract class Member extends Person{
         this.borMade = 0;
         this.borDays = borDays;
         this.fine = 0;
+        this.fineOd = fine;
 
         this.borrowing = new ArrayList<>();
         this.history = new ArrayList<>();
@@ -57,11 +59,8 @@ public abstract class Member extends Person{
                 break;
         }
     }
-    public boolean checkBorrowing() {
-        if (borMade == total || activity == 2)
-            return false;
-        
-        return true;
+    public boolean canBorrowing() {        
+        return !(borMade == total || activity == 2);
     }
 
     public void addItem(Lending l) {        
@@ -99,6 +98,10 @@ public abstract class Member extends Person{
 
     public int getBorDays() {
         return borDays;
+    }
+
+    public float getFineOd() {
+        return fineOd;
     }
 
     public int getActivity() {

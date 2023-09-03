@@ -1,6 +1,7 @@
 package multimedia_pack;
 
 public class E_Book extends Book{
+
     private String format; // (PDF, ePub, etc.)
     private int num_licences;
     private String file_format;

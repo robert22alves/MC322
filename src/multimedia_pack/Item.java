@@ -1,7 +1,5 @@
 package multimedia_pack;
 
-import java.util.ArrayList;
-
 import libservices_pack.Lending;
 
 public abstract class Item {
@@ -11,9 +9,11 @@ public abstract class Item {
     private String synopsis;
     private String gender;
     private float price;
-    private float fine;
 
-    private ArrayList<Lending> lending; //Emprestimos atuais
+    private Lending lending; //Emprestimo atual
+    private boolean isAvailable = true;
+    private boolean isReserved = false;
+
 
     public Item(String title, float price, float fine, String author_or_artist, String publisher, String synopsis, String gender) {
         this.author_or_artist = author_or_artist;
@@ -22,13 +22,20 @@ public abstract class Item {
         this.gender = gender;
         this.title = title;
         this.price = price;
-        this.fine = fine;
     }
 
-    public abstract boolean checkLending();
+    public boolean canLending() {
+        return (isAvailable && !isReserved);
+    }
     
-    public void addLending(Lending l) {
-        getLending().add(l);
+    public void makeLending(Lending l) {
+        lending = l;
+        isAvailable = false;
+    }
+
+    public void makeReturn() {
+        lending = null;
+        isAvailable = true;
     }
 
     //Getters
@@ -41,6 +48,7 @@ public abstract class Item {
     public float getPrice() {
         return price;
     }
+
     public String getGender() {
         return gender;
     }
@@ -53,8 +61,22 @@ public abstract class Item {
     public String getTitle() {
         return title;
     }
-    public ArrayList<Lending> getLending() {
+    public Lending getLending() {
         return lending;
+    }
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public boolean isReserved() {
+        return isReserved;
+    }
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+
+    public void setReserved(boolean isReserved) {
+        this.isReserved = isReserved;
     }
 
     @Override

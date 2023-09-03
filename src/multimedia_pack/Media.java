@@ -1,6 +1,7 @@
 package multimedia_pack;
 
 public abstract class Media extends Item{
+
     private int minutes_duration;
     private int num_copies; //numero total de copias
     private int copies_available; //copias disponiveis
@@ -29,6 +30,7 @@ public abstract class Media extends Item{
 
     public int getPreservation() {
         return preservation;
+
     }
 }
 

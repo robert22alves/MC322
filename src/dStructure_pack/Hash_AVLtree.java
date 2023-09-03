@@ -3,7 +3,6 @@ package dStructure_pack;
 import java.util.ArrayList;
 
 public class Hash_AVLtree<T> {
-    // Nó da Árvore AVL
     private class Node {
         T data;
         Node left;
@@ -18,19 +17,14 @@ public class Hash_AVLtree<T> {
         }
     }
 
-    // Map Hash das raizes da Árvore AVL
-    private ArrayList<ArrayList<Node>> map;
-    private int count; // total de elementos
+    private ArrayList<Node> table;
+    private int count = 0;
 
     public Hash_AVLtree(int size) {
-        this.count = 0;
-        this.map = new ArrayList<>(size);
+        this.table = new ArrayList<>(size);
 
-        for (int i = 0; i < size; i++){
-            map.set(i, new ArrayList<>(size));
-            for (int j = 0; j < size; j++)
-                map.get(i).set(j, null);
-        }
+        for (int i = 0; i < size; i++)
+            table.set(i, null);
     }
 
     private void updateNode(Node n) {
@@ -84,10 +78,8 @@ public class Hash_AVLtree<T> {
     }
 
     private Node insertion(T data, Node n) {
-        if (n == null){
-            count++;
+        if (n == null)
             return new Node(data);
-        }
 
         int i = n.data.toString().compareToIgnoreCase(data.toString());
         if (i > 0)
@@ -98,7 +90,7 @@ public class Hash_AVLtree<T> {
             return n;
         
         updateNode(n);
-
+        count++;
         return rotation(n);
     }
 
@@ -115,37 +107,21 @@ public class Hash_AVLtree<T> {
         return n;
     }
 
-    private int h1(String data) {
-        return (data.hashCode() & 0x7fffffff) % map.size();
+    private int hash(String data) {
+        return (data.hashCode() & 0x7fffffff) % table.size();
     }
 
-    private int h2(String data) {
-        return 1 + (data.hashCode() & 0x7fffffff) % (map.size() - 1);
-    }
-
-    private int h1(T data) {
-        return (data.hashCode() & 0x7fffffff) % map.size();
-    }
-
-    private int h2(T data) {
-        return 1 + (data.hashCode() & 0x7fffffff) % (map.size() - 1);
+    private int hash(T data) {
+        return (data.hashCode() & 0x7fffffff) % table.size();
     }
 
     public T getData(String data) {
-        int h1 = h1(data);
-        int h2 = h2(data);
-        int h = (h1 + h2) % map.size();
-        Node n = map.get(h1).get(h);
-
+        Node n = table.get(hash(data));
         return search(data, n).data;
     }
 
     public void addData(T data) {
-        int h1 = h1(data);
-        int h2 = h2(data);
-        int h = (h1 + h2) % map.size();
-        Node n = map.get(h1).get(h);
-
-        insertion(data, n);
+        Node n = table.get(hash(data));
+        table.set(hash(data), insertion(data, n));
     }
 }
