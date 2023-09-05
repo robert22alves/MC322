@@ -3,7 +3,7 @@ package biblioteca.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import biblioteca.models.Membro;
+import biblioteca.models.libmember.Membro;
 
 public class MembroControllerImpl implements MembroController {
     private List<Membro> membros;
