@@ -1,4 +1,4 @@
-package biblioteca.models.libmember;
+package biblioteca.models.libmembers;
 
 public interface Membro {
     String getNome();

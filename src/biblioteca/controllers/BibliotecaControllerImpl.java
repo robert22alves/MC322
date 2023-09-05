@@ -3,7 +3,7 @@ package biblioteca.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import biblioteca.models.libmember.Membro;
+import biblioteca.models.libmembers.Membro;
 import biblioteca.models.multimedia.ItemMultimidia;
 
 public class BibliotecaControllerImpl implements BibliotecaController {

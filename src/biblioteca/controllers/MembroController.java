@@ -2,7 +2,7 @@ package biblioteca.controllers;
 
 import java.util.List;
 
-import biblioteca.models.libmember.Membro;
+import biblioteca.models.libmembers.Membro;
 
 public interface MembroController {
     List<Membro> listarMembros();
