@@ -1,6 +1,6 @@
 package biblioteca.controllers;
 
-import biblioteca.views.RelatorioView;
+//import biblioteca.views.RelatorioView;
 
 public interface RelatorioController {
     void gerarRelatorioAtividadesMembros(RelatorioView view);
