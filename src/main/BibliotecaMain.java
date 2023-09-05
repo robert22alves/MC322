@@ -19,7 +19,7 @@ public class BibliotecaMain {
 
         BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
         MembroView membroView = new MembroViewImpl(membroController);
-        RelatorioView relatorioView = new RelatorioViewImpl(relatorioController);
+        //RelatorioView relatorioView = new RelatorioViewImpl(relatorioController);
 
         Scanner scanner = new Scanner(System.in);
         
@@ -49,7 +49,7 @@ public class BibliotecaMain {
                     break;
                 case 3:
                     // Menu de Geração de Relatórios e Estatísticas
-                    menuRelatoriosEstatisticas(scanner, relatorioView);
+                    menuRelatoriosEstatisticas(scanner/*, relatorioView*/);
                     break;
                 case 4:
                     // Menu de Administração de Funcionários
@@ -153,7 +153,7 @@ public class BibliotecaMain {
         }
     }
 
-    private static void menuRelatoriosEstatisticas(Scanner scanner, RelatorioView relatorioView) {
+    private static void menuRelatoriosEstatisticas(Scanner scanner/*, RelatorioView relatorioView*/) {
         while (true) {
             System.out.println("---- Menu Relatórios e Estatísticas ----");
             System.out.println();
