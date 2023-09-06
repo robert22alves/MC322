@@ -1,20 +1,23 @@
 package biblioteca.models.membrosPack;
+import biblioteca.models.Data;
 
 public abstract class MembroAbs implements Membro{
     private String nome;
     private String identificacao;
     private String endereco;
     private String contato;
+    private Data dataRegistro;
 
     private int limiteEmprestimo;
     private int prazoEmprestimo;
     private double multaAtraso;
 
-    public MembroAbs(String nome, String identificacao, String endereco, String contato, int limiteEmprestimo, int prazoEmprestimo) {
+    public MembroAbs(String nome, String identificacao, String endereco, String contato, Data dataRegistro, int limiteEmprestimo, int prazoEmprestimo) {
         this.nome = nome;
         this.identificacao = identificacao;
         this.endereco = endereco;
         this.contato = contato;
+        this.dataRegistro = dataRegistro;
 
         this.limiteEmprestimo = limiteEmprestimo;
         this.prazoEmprestimo = prazoEmprestimo;
@@ -37,6 +40,10 @@ public abstract class MembroAbs implements Membro{
 
     public String getContato() {
         return contato;
+    }
+
+    public Data getDataRegistro() {
+        return dataRegistro;
     }
 
     @Override
