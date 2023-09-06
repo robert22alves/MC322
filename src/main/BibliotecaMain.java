@@ -1,8 +1,8 @@
 package main;
 
 import biblioteca.controllers.*;
-import biblioteca.models.libmembers.Membro;
-import biblioteca.models.multimedia.ItemMultimidia;
+import biblioteca.models.membrosPack.Membro;
+import biblioteca.models.multimidia.ItemMultimidia;
 import biblioteca.views.*;
 
 import java.util.List;

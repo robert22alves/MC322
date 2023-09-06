@@ -3,7 +3,7 @@ package biblioteca.views;
 import java.util.List;
 
 import biblioteca.controllers.MembroController;
-import biblioteca.models.libmembers.Membro;
+import biblioteca.models.membrosPack.Membro;
 
 public class MembroViewImpl implements MembroView {
     private MembroController membroController;

@@ -2,8 +2,8 @@ package biblioteca.controllers;
 
 import java.util.List;
 
-import biblioteca.models.libmembers.Membro;
-import biblioteca.models.multimedia.ItemMultimidia;
+import biblioteca.models.membrosPack.Membro;
+import biblioteca.models.multimidia.ItemMultimidia;
 
 public interface BibliotecaController {
     List<ItemMultimidia> consultarItensDisponiveis();

@@ -2,7 +2,7 @@ package biblioteca.views;
 
 import java.util.List;
 
-import biblioteca.models.libmembers.Membro;
+import biblioteca.models.membrosPack.Membro;
 
 public interface MembroView {
     void mostrarListaMembros(List<Membro> membros);
