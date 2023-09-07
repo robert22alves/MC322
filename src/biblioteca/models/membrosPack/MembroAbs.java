@@ -12,7 +12,7 @@ public abstract class MembroAbs implements Membro{
     private int prazoEmprestimo;
     private double multaAtraso;
 
-    public MembroAbs(String nome, String identificacao, String endereco, String contato, Data dataRegistro, int limiteEmprestimo, int prazoEmprestimo) {
+    public MembroAbs(String nome, String identificacao, String endereco, String contato, Data dataRegistro, int limiteEmprestimo, int prazoEmprestimo, double multaAtraso) {
         this.nome = nome;
         this.identificacao = identificacao;
         this.endereco = endereco;
@@ -21,7 +21,7 @@ public abstract class MembroAbs implements Membro{
 
         this.limiteEmprestimo = limiteEmprestimo;
         this.prazoEmprestimo = prazoEmprestimo;
-        this.multaAtraso = 0;
+        this.multaAtraso = multaAtraso;
     }
 
     @Override
