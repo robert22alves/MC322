@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import biblioteca.models.membrosPack.Membro;
-import biblioteca.models.multimidia.ItemMultimidia;
+import biblioteca.models.multimidiaPack.ItemMultimidia;
 
 public class BibliotecaControllerImpl implements BibliotecaController {
     private List<ItemMultimidia> itens;

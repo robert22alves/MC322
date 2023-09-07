@@ -1,4 +1,4 @@
-package biblioteca.models.multimidia;
+package biblioteca.models.multimidiaPack;
 
 public class AudioCD extends Item{
     

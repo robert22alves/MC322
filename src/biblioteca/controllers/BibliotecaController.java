@@ -3,7 +3,7 @@ package biblioteca.controllers;
 import java.util.List;
 
 import biblioteca.models.membrosPack.Membro;
-import biblioteca.models.multimidia.ItemMultimidia;
+import biblioteca.models.multimidiaPack.ItemMultimidia;
 
 public interface BibliotecaController {
     List<ItemMultimidia> consultarItensDisponiveis();
