@@ -114,6 +114,6 @@ public class Data {
 
     @Override
     public String toString() {
-        return (dia < 0 ? "0" : "") + dia + "/" + (mes < 0 ? "0" : "") + mes + "/" + ano;
+        return (dia < 10 ? "0" : "") + dia + "/" + (mes < 10 ? "0" : "") + mes + "/" + ano;
     }
 }
