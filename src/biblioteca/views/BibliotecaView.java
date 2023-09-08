@@ -2,7 +2,7 @@ package biblioteca.views;
 
 import java.util.List;
 
-import biblioteca.models.multimidiaPack.ItemMultimidia;
+import biblioteca.models.itensPack.ItemMultimidia;
 
 public interface BibliotecaView {
     void mostrarItensDisponiveis(List<ItemMultimidia> itens);

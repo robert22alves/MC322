@@ -1,4 +1,5 @@
 package biblioteca.models.dStructurePack;
+import biblioteca.models.membrosPack.Membro;
 
 public class AVLtree<T> {
     private class Node {
@@ -73,7 +74,17 @@ public class AVLtree<T> {
         return n;
     }
 
-    private int compareTo() {
+    private int compareTo(T data1, T data2) {
+        if (data1 instanceof Membro)
+            return ((Membro)data1).getIdentificacao().compareToIgnoreCase(((Membro)data2).getIdentificacao());
+
+        return 0;
+    }
+
+    private int compareTo(T data1, String data2) {
+        if (data1 instanceof Membro)
+            return ((Membro)data1).getIdentificacao().compareToIgnoreCase(data2);
+
         return 0;
     }
 
@@ -81,7 +92,7 @@ public class AVLtree<T> {
         if (n == null)
             return new Node(data);
 
-        int i = compareTo();
+        int i = compareTo(n.data, data);
         if (i < 0)
             n.left = inserir(data, n.left);
         else if (i > 0)
@@ -98,7 +109,7 @@ public class AVLtree<T> {
         if (n == null)
             return null;
 
-        int i = compareTo();
+        int i = compareTo(n.data, data);
         if (i < 0)
             return buscar(data, n.left);
         if (i > 0)
@@ -108,15 +119,21 @@ public class AVLtree<T> {
     }
 
     private Node sucessor(String data, Node n) {
-        // TODO achar sucessor
-        return null;
+        if (n == null) 
+            return null;
+        
+        if (compareTo(n.data, data) >= 0)
+            return sucessor(data, n.right);
+        
+        Node temp = sucessor(data, n.left);
+        return compareTo(n.data, temp.data) > 0 ? temp : n;
     }
 
-    private Node remover(String data, Node n) {
+    public Node remover(String data, Node n) {
         if (n == null)
             return null;
         
-        int i = compareTo();
+        int i = compareTo(n.data, data);
         if (i < 0)
             n.left = remover(data, n.left);
         else if (i > 0)
@@ -134,7 +151,7 @@ public class AVLtree<T> {
     
             Node suc = sucessor(data, n);
             n.data = suc.data;
-            // TODO remover sucessor
+            n.right = remover(data, n.right);
         }
 
         updateNode(n);

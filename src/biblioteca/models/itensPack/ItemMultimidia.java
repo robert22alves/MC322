@@ -1,4 +1,4 @@
-package biblioteca.models.multimidiaPack;
+package biblioteca.models.itensPack;
 
 public interface ItemMultimidia {
     String getTitulo();
