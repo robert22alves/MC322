@@ -3,7 +3,7 @@ package libjobs_pack;
 import libmembers_pack.Member;
 import libmembers_pack.Staff;
 import libservices_pack.Lending;
-import libservices_pack.Service;
+import libservices_pack.Service_Item;
 import multimedia_pack.Item;
 import system.Collection;
 import system.Membership;
@@ -65,22 +65,22 @@ public class Librarian extends Staff{
     public void makeLending(int typeItem, String item, int typeMember, String member, String lendDate, String returnDate) {         
         Item i = searchItem(typeItem, item);
         Member m = searchMember(typeMember, member);
-        Service.makeLending(i, m, lendDate, returnDate);
+        Service_Item.makeLending(i, m, lendDate, returnDate);
     }
 
     public void makeReturn(int typeMember, String member, Lending lending, String returnDate, boolean isOverdue ,int overdueDays) {         
         Member m = searchMember(typeMember, member);
-        Service.makeReturn(lending, m, returnDate, isOverdue, overdueDays);        
+        Service_Item.makeReturn(lending, m, returnDate, isOverdue, overdueDays);        
     }
 
     public void makeRenewal(Lending lending, String renewalDate, String returnDate) {         
-        Service.makeRenewal(lending, renewalDate, returnDate);
+        Service_Item.makeRenewal(lending, renewalDate, returnDate);
     }
 
     public void makeLen(int typeItem, String item, int typeMember, String member, String reserveDate) {         
         Item i = searchItem(typeItem, item);
         Member m = searchMember(typeMember, member);
-        Service.makeReserve(i, m, reserveDate);
+        Service_Item.makeReserve(i, m, reserveDate);
     }
 
     public Collection getItens() {
