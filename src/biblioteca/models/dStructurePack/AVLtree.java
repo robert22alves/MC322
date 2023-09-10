@@ -1,35 +1,37 @@
 package biblioteca.models.dStructurePack;
 import biblioteca.models.membrosPack.Membro;
 
-public class AVLtree<T> {
+public class AVLtree<K,V> {
     private class Node {
-        private T data;
+        private K chave;
+        private V valor;
         private Node left;
         private Node right;
         private int b_factor;
-        private int height;
+        private int altura;
 
-        public Node(T data) {
-            this.data = data;
+        public Node(K chave, V valor) {
+            this.chave = chave;
+            this.valor = valor;
             this.left = this.right = null;
-            this.b_factor = this.height =  0;
+            this.b_factor = this.altura =  0;
         }
     }
 
-    private Node root;
-    private int count;
+    private Node raiz;
+    private int qtd;
 
     public AVLtree() {
-        this.root = null;
-        this.count = 0;
+        this.raiz = null;
+        this.qtd = 0;
     }
 
     private void updateNode(Node n) {
-        int l_height = (n.left == null) ? 0 : n.left.height + 1;
-        int r_height = (n.right == null) ? 0 : n.right.height + 1;
+        int l_height = (n.left == null) ? 0 : n.left.altura + 1;
+        int r_height = (n.right == null) ? 0 : n.right.altura + 1;
 
         n.b_factor = l_height - r_height;
-        n.height = (l_height >= r_height) ? l_height : r_height;
+        n.altura = (l_height >= r_height) ? l_height : r_height;
     }
 
     private Node leftRotate(Node n) {
@@ -74,89 +76,99 @@ public class AVLtree<T> {
         return n;
     }
 
-    private int compareTo(T data1, T data2) {
-        if (data1 instanceof Membro)
-            return ((Membro)data1).getIdentificacao().compareToIgnoreCase(((Membro)data2).getIdentificacao());
+    private int compareTo(K chave1, K chave2) {
+        if (chave1 instanceof String)
+            return ((String)chave1).compareToIgnoreCase((String)chave2);
 
         return 0;
     }
 
-    private int compareTo(T data1, String data2) {
-        if (data1 instanceof Membro)
-            return ((Membro)data1).getIdentificacao().compareToIgnoreCase(data2);
+    private Node inserir(K chave, V valor, Node n) {
+        if (n == null){
+            qtd++;
+            return new Node(chave, valor);
+        }
 
-        return 0;
-    }
-
-    private Node inserir(T data, Node n) {
-        if (n == null)
-            return new Node(data);
-
-        int i = compareTo(n.data, data);
+        int i = compareTo(n.chave, chave);
         if (i < 0)
-            n.left = inserir(data, n.left);
+            n.left = inserir(chave, valor, n.left);
         else if (i > 0)
-            n.right = inserir(data, n.right);
+            n.right = inserir(chave, valor, n.right);
         else
             return n;
         
         updateNode(n);
-        count++;
         return rotation(n);
     }
 
-    private Node buscar(String data, Node n) {
+    private Node buscar(K chave, Node n) {
         if (n == null)
             return null;
 
-        int i = compareTo(n.data, data);
+        int i = compareTo(n.chave, chave);
         if (i < 0)
-            return buscar(data, n.left);
+            return buscar(chave, n.left);
         if (i > 0)
-            return buscar(data, n.right);
+            return buscar(chave, n.right);
         
         return n;
     }
 
-    private Node sucessor(String data, Node n) {
+    private Node sucessor(K chave, Node n) {
         if (n == null) 
             return null;
         
-        if (compareTo(n.data, data) >= 0)
-            return sucessor(data, n.right);
+        if (compareTo(n.chave, chave) >= 0)
+            return sucessor(chave, n.right);
         
-        Node temp = sucessor(data, n.left);
-        return compareTo(n.data, temp.data) > 0 ? temp : n;
+        Node temp = sucessor(chave, n.left);
+        return compareTo(n.chave, temp.chave) > 0 ? temp : n;
     }
 
-    public Node remover(String data, Node n) {
+    private Node remover(K chave, Node n) {
         if (n == null)
             return null;
         
-        int i = compareTo(n.data, data);
+        int i = compareTo(n.chave, chave);
         if (i < 0)
-            n.left = remover(data, n.left);
+            n.left = remover(chave, n.left);
         else if (i > 0)
-            n.right = remover(data, n.right);
+            n.right = remover(chave, n.right);
         
         else {
-            count--;
-            if (n.right == n.left)
-                return null;
             
-            if (n.right == null)
+            if (n.right == n.left){
+                qtd--;
+                return null;
+            }
+            if (n.right == null){
+                qtd--;
                 return n.left;
-            if (n.left == null)
+            }
+            if (n.left == null){
+                qtd--;
                 return n.right;
+            }
     
-            Node suc = sucessor(data, n);
-            n.data = suc.data;
-            n.right = remover(data, n.right);
+            Node suc = sucessor(chave, n);
+            n.valor = suc.valor;
+            n.chave = suc.chave;
+            n.right = remover(suc.chave, n.right);
         }
 
         updateNode(n);
         return rotation(n);
     }
 
+    public void inserir(K chave, V valor) {
+        raiz = inserir(chave, valor, raiz);
+    }
 
+    public V buscarChave(K chave) {
+        return buscar(chave, raiz).valor;
+    }
+
+    public void remover(K chave) {
+        raiz = remover(chave, raiz);
+    }
 }
