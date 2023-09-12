@@ -3,6 +3,10 @@ package biblioteca.models.itensPack;
 public class Equipamentos {
     private String equipamento;
 
+    private Equipamentos(String equipamento) {
+        this.equipamento = equipamento;
+    }
+
     private class Informatica extends Equipamentos{
         private String processador;
         private int ram;
@@ -10,7 +14,7 @@ public class Equipamentos {
         private String acessorios;
 
         public Informatica(String equipamento, String processador, int ram, int rom, String acessorios){
-            this.setEquipamento(equipamento);
+            super(equipamento);
             this.processador = processador;
             this.ram = ram;
             this.rom = rom;
@@ -36,13 +40,13 @@ public class Equipamentos {
 
     private class Audiovisual extends Equipamentos{
         public Audiovisual(String equipamento){
-            this.setEquipamento(equipamento); 
+            super(equipamento);
         }
     }
 
     private class Impressao extends Equipamentos{
         public Impressao(String equipamento){
-            this.setEquipamento(equipamento);
+            super(equipamento);
         }
     }
 
