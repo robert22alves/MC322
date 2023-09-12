@@ -157,7 +157,7 @@ public class Hash_AVLtree<K,V> {
             n.chave = suc.chave;
             n.esq = remover(suc.chave, n.esq);
         }
-        
+
         atualizarNo(n);
         return rot(n);
     }
