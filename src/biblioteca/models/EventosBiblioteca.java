@@ -1,13 +1,19 @@
 package biblioteca.models;
 
+import biblioteca.models.membrosPack.MembroAbs;
+import java.util.List;
+
 public class EventosBiblioteca {
+
+    List<MembroAbs> participantes;
+
     private class Palestra extends EventosBiblioteca{
         private String palestrante;
         private String topico;
         private Data data;
         private Horario horario;
         private String local;
-
+        
         public Palestra(String palestrante, String topico, Data data, Horario horario, String local) {
             this.data = data;
             this.topico = topico;
@@ -118,4 +124,10 @@ public class EventosBiblioteca {
     public TipoDeEvento getTipo() {
         return tipo;
     }
+
+    public List<MembroAbs> getParticipantes() {
+        return participantes;
+    }
+
+    
 }

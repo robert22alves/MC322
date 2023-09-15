@@ -1,5 +1,7 @@
 package biblioteca.models.membrosPack;
 import biblioteca.models.Data;
+import java.util.List;
+import biblioteca.models.servicosPack.Emprestimo;
 
 public abstract class MembroAbs implements Membro{
     private String nome;
@@ -7,6 +9,8 @@ public abstract class MembroAbs implements Membro{
     private String endereco;
     private String contato;
     private Data dataRegistro;
+    private List<Emprestimo> historico;
+
 
     private int limiteEmprestimo;
     private int prazoEmprestimo;
@@ -44,6 +48,10 @@ public abstract class MembroAbs implements Membro{
 
     public Data getDataRegistro() {
         return dataRegistro;
+    }
+
+    public List<Emprestimo> getHistorico() {
+        return historico;
     }
 
     @Override
