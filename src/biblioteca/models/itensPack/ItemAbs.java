@@ -13,6 +13,19 @@ public abstract class ItemAbs implements ItemMultimidia{
     private List<Comentario> comentario;
     private Integer id;
 
+    
+    public ItemAbs(String titulo, String autor, String editora, String anoPublicacao, String genero, String detalhes,
+            List<Comentario> comentario, Integer id) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editora = editora;
+        this.anoPublicacao = anoPublicacao;
+        this.genero = genero;
+        this.detalhes = detalhes;
+        this.comentario = comentario;
+        this.id = id;
+    }
+
     @Override
     public String getTitulo() {
         return titulo;
