@@ -3,6 +3,7 @@ package biblioteca.models.itensPack;
 public class Multimidia implements ItemMultimidia{
     private String titulo;
     private String detalhes;
+
     
     private class Audio extends Multimidia{
         private String tipoAudio;
