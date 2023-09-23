@@ -2,6 +2,7 @@ package biblioteca.models.itensPack;
 
 import java.util.List;
 import java.lang.Integer;
+import java.util.ArrayList;
 
 public abstract class ItemAbs implements ItemMultimidia{
     private String titulo;
@@ -24,6 +25,7 @@ public abstract class ItemAbs implements ItemMultimidia{
         this.detalhes = detalhes;
         this.comentario = comentario;
         this.id = id;
+        this.comentario = new ArrayList<Comentario>();
     }
 
     @Override
