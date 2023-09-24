@@ -1,6 +1,8 @@
 package biblioteca.models.itensPack;
 
-public class Equipamentos {
+import biblioteca.models.Reservaveis;
+
+public class Equipamentos implements Reservaveis{
     private String equipamento;
 
     private Equipamentos(String equipamento) {
