@@ -1,20 +1,24 @@
 package biblioteca.models.servicosPack;
 
-import java.util.List;
+import java.util.ArrayList;
 import biblioteca.models.membrosPack.MembroAbs;
-import biblioteca.models.itensPack.ItemAbs;
+import biblioteca.models.Reservaveis;
 
-public abstract class ListaReservas<T> {
+public class ListaReservas<T extends Reservaveis> {
 
-    private static List<String> lista_reservas;
+    private ArrayList<String> lista_reservas;
+
+    public ListaReservas() {
+        this.lista_reservas = new ArrayList<>();
+    }
 
     //Getter
-    public List<String> getLista_reservas() {
+    public ArrayList<String> getLista_reservas() {
         return lista_reservas;
     }
 
     //Metodo
-    public static void adicionarReserva(ItemAbs item, MembroAbs membro){
+    public void adicionarReserva(T item, MembroAbs membro){
         lista_reservas.add(membro + "reservou o item" + item);
         return;
     }

@@ -1,21 +1,24 @@
 package biblioteca.models.servicosPack;
 
-import java.util.List;
+import java.util.ArrayList;
 import biblioteca.models.membrosPack.MembroAbs;
-import biblioteca.models.itensPack.ItemAbs;
+import biblioteca.models.Reservaveis;
 
-public abstract class ListaEmprestimos<T>{
+public class ListaEmprestimos<T extends Reservaveis>{
  
-    private static List<String> lista_emprestimos;
+    private ArrayList<String> lista_emprestimos;
 
+    public ListaEmprestimos() {
+        this.lista_emprestimos = new ArrayList<>(); 
+    }
 
     //Getter
-    public List<String> getLista_emprestimos() {
+    public ArrayList<String> getLista_emprestimos() {
         return lista_emprestimos;
     }
 
     //Metodo
-    public static void adicionarEmprestimo(ItemAbs item, MembroAbs membro){
+    public void adicionarEmprestimo(T item, MembroAbs membro){
         lista_emprestimos.add(membro + "fez emprestimo do item" + item);
         return;
     }

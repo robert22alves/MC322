@@ -1,22 +1,24 @@
 package biblioteca.models.servicosPack;
 
 import biblioteca.models.Data;
+import biblioteca.models.Reservaveis;
 import biblioteca.models.itensPack.ItemAbs;
 import biblioteca.models.membrosPack.MembroAbs;
 
 public class Reserva{
     private Data dia;
     private MembroAbs membro;
-    private ItemAbs item;
+    private Reservaveis item;
     private static int num_reservas = 0; //numero de reservas
+    private static ListaReservas<Reservaveis> listaReservas = new ListaReservas<>();
 
-    public Reserva(Data dia, MembroAbs membro, ItemAbs item, int num_reservas) {
+    public Reserva(Data dia, MembroAbs membro, Reservaveis item) {
         Reserva.num_reservas += 1;
         this.dia = dia;
         this.membro = membro;
         this.item = item;
 
-        ListaReservas.adicionarReserva(item, membro);
+        listaReservas.adicionarReserva(item, membro);
     }
 
     //Getters
@@ -29,7 +31,7 @@ public class Reserva{
         return membro;
     }
 
-    public ItemAbs getItem() {
+    public Reservaveis getItem() {
         return item;
     }
 

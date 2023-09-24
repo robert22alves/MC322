@@ -2,9 +2,11 @@ package biblioteca.models.servicosPack;
 
 import biblioteca.models.Data;
 import biblioteca.models.Horario;
+import biblioteca.models.Reservaveis;
+
 import java.util.ArrayList;
 
-public class ReservaSala {
+public class ReservaSala implements Reservaveis{
     private Data dataReserva;
     private Horario horaInicio;
     private Horario horaFim;
