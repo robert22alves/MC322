@@ -1,5 +1,8 @@
 package biblioteca.models.membrosPack;
 import biblioteca.models.Data;
+import biblioteca.models.servicosPack.Emprestimo;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class MembroAbs implements Membro{
     private String nome;
@@ -7,18 +10,21 @@ public abstract class MembroAbs implements Membro{
     private String endereco;
     private String contato;
     private Data dataRegistro;
+    private List<Emprestimo> historico;
+
 
     private int limiteEmprestimo;
     private int prazoEmprestimo;
     private double multaAtraso;
 
-    public MembroAbs(String nome, String identificacao, String endereco, String contato, Data dataRegistro, int limiteEmprestimo, int prazoEmprestimo, double multaAtraso) {
+    public MembroAbs(String nome, String identificacao, String endereco, String contato, Data dataRegistro, int limiteEmprestimo, int prazoEmprestimo, double multaAtraso, ArrayList<Emprestimo> historico) {
         this.nome = nome;
         this.identificacao = identificacao;
         this.endereco = endereco;
         this.contato = contato;
         this.dataRegistro = dataRegistro;
 
+        this.historico = new ArrayList<Emprestimo>();
         this.limiteEmprestimo = limiteEmprestimo;
         this.prazoEmprestimo = prazoEmprestimo;
         this.multaAtraso = multaAtraso;
@@ -44,6 +50,10 @@ public abstract class MembroAbs implements Membro{
 
     public Data getDataRegistro() {
         return dataRegistro;
+    }
+
+    public List<Emprestimo> getHistorico() {
+        return historico;
     }
 
     @Override
