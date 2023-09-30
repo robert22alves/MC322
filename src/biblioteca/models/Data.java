@@ -75,7 +75,7 @@ public class Data {
     /*
     * se data1 sucede data2 return 1
     * se forem iguais return 0
-    * se data2 for sucede que data1 return -1
+    * se data2 sucede data1 return -1
     */
     public static int compareDatas(Data data1, Data data2) {
         if (data1.ano == data2.ano) {
