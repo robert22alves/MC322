@@ -3,6 +3,8 @@ package biblioteca.models.acervo.equipamentos;
 import biblioteca.models.acervo.Acervo;
 
 public class Equipamentos implements Acervo{
+    private Integer id;
+
     enum CategoriaEquipamento {
         INFORMATICA, AUDIOVISUAL, IMPRESSAO
     }
@@ -15,6 +17,11 @@ public class Equipamentos implements Acervo{
     
     public CategoriaEquipamento getCategoria() {
         return categoria;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
 }

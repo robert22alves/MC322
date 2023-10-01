@@ -4,7 +4,7 @@ import biblioteca.models.acervo.Acervo;
 
 public abstract class Sala implements Acervo{
     private boolean reservado;
-    private String numeroSala;
+    private Integer numeroSala;
 
     public Sala () {
         this.reservado = false;
@@ -20,12 +20,17 @@ public abstract class Sala implements Acervo{
         this.reservado = reservado;
     }
 
-    public String getNumeroSala() {
+    public Integer getNumeroSala() {
         return numeroSala;
     }
 
-    public void setNumeroSala(String numeroSala) {
+    public void setNumeroSala(Integer numeroSala) {
         this.numeroSala = numeroSala;
+    }
+
+    @Override
+    public Integer getId(){
+        return numeroSala;
     }
 
 }

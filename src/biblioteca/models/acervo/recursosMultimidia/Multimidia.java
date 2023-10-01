@@ -3,6 +3,8 @@ package biblioteca.models.acervo.recursosMultimidia;
 import biblioteca.models.acervo.Acervo;
 
 public class Multimidia  implements Acervo{
+    private Integer id;
+
     enum FormatoMultimidia{
         AUDIO, VIDEO, SOFTWARE
     }
@@ -15,5 +17,10 @@ public class Multimidia  implements Acervo{
 
     public FormatoMultimidia getFormato() {
         return formato;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 }

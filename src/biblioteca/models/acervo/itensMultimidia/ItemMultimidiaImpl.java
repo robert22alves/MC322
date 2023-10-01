@@ -2,7 +2,7 @@ package biblioteca.models.acervo.itensMultimidia;
 
 import java.util.ArrayList;
 
-public abstract class ItemMultimidiaImpl implements ItemMultimidia{
+public class ItemMultimidiaImpl implements ItemMultimidia{
     private String titulo;
     private String autor; //Autor, Artista ou Diretor
     private String publicadora; //Editora, Gravadora ou Publicadora
@@ -10,11 +10,6 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
     private String genero;
     private String detalhes;
     private Integer id;
-
-    private int copias; //Copias ou Licencas
-    private int copiasDisponíveis;
-    private int copiasReservadas;
-    private int copiasEmprestadas;
 
     private ArrayList<Comentario> comentarios;
 
@@ -26,10 +21,7 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
         this.genero = null;
         this.detalhes = null;
         this.id = null;
-        this.copias = 0;
-        this.copiasDisponíveis = 0;
-        this.copiasEmprestadas = 0;
-        this.copiasReservadas = 0;
+    
         this.comentarios = new ArrayList<>();
     }
 
@@ -96,38 +88,6 @@ public abstract class ItemMultimidiaImpl implements ItemMultimidia{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public int getCopias() {
-        return copias;
-    }
-
-    public void setCopias(int copias) {
-        this.copias = copias;
-    }
-
-    public int getCopiasDisponíveis() {
-        return copiasDisponíveis;
-    }
-
-    public void setCopiasDisponíveis(int copiasDisponíveis) {
-        this.copiasDisponíveis = copiasDisponíveis;
-    }
-
-    public int getCopiasReservadas() {
-        return copiasReservadas;
-    }
-
-    public void setCopiasReservadas(int copiasReservadas) {
-        this.copiasReservadas = copiasReservadas;
-    }
-
-    public int getCopiasEmprestadas() {
-        return copiasEmprestadas;
-    }
-
-    public void setCopiasEmprestadas(int copiasEmprestadas) {
-        this.copiasEmprestadas = copiasEmprestadas;
     }
 
     public ArrayList<Comentario> getComentarios() {

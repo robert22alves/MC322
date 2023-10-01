@@ -1,6 +1,6 @@
 package biblioteca.models.acervo;
 
-public enum StatusAcervo {
+public enum StatusExemplar {
     DISPONIVEL,
     EMPRESTADO,
     RESERVADO

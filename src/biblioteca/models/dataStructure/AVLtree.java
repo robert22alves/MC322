@@ -1,7 +1,6 @@
 package biblioteca.models.dataStructure;
-import java.util.ArrayList;
 
-public class Hash_AVLtree<K,V> {
+public class AVLtree<K,V> {
     private class Node {
         private K chave;
         private V valor;
@@ -18,15 +17,12 @@ public class Hash_AVLtree<K,V> {
         }
     }
 
-    private ArrayList<Node> raizes;
+    private Node raiz;
     private int qtd;
 
-    public Hash_AVLtree() {
+    public AVLtree() {
         this.qtd = 0;
-        this.raizes = new ArrayList<>(13);
-
-        for (int i = 0; i < 13; i++) 
-            raizes.set(i, null);
+        this.raiz = null;
     }
 
     private void atualizarNo(Node n) {
@@ -107,6 +103,7 @@ public class Hash_AVLtree<K,V> {
     private Node buscar(K chave, Node n) {
         if (n == null)
             return null;
+        
 
         int i = compChave(n.chave, chave);
         if (i < 0)
@@ -161,29 +158,17 @@ public class Hash_AVLtree<K,V> {
         atualizarNo(n);
         return rot(n);
     }
-
-    private int hash(K chave){
-        if (chave instanceof String)
-            return (chave.hashCode() & 0x7fffffff) % 13;
-
-        else if (chave instanceof Integer)
-            return (chave.hashCode() & 0x7fffffff) % 13;
-        
-        return 0;
-    }
     
     public void inserir(K chave, V valor) {
-        int h = hash(chave);
-        raizes.set(h, inserir(chave, valor, raizes.get(h)));
+        raiz = inserir(chave, valor, raiz);
     }
 
     public V buscarChave(K chave) {
-        int h = hash(chave);
-        return buscar(chave, raizes.get(h)).valor;
+        Node no = buscar(chave, raiz);
+        return no != null ? no.valor : null;
     }
 
     public void remover(K chave) {
-        int h = hash(chave);
-        raizes.set(h, remover(chave, raizes.get(h)));
+        raiz = remover(chave, raiz);
     }
 }
