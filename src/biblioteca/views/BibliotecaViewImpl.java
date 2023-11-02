@@ -3,13 +3,13 @@ package biblioteca.views;
 import java.util.List;
 
 import biblioteca.controllers.BibliotecaController;
-import biblioteca.models.itensPack.ItemMultimidia;
+import biblioteca.models.acervo.itensMultimidia.ItemMultimidia;
 
 public class BibliotecaViewImpl implements BibliotecaView {
     private BibliotecaController bibliotecaController;
 
     public BibliotecaViewImpl(BibliotecaController controller) {
-        bibliotecaController = controller;
+        this.bibliotecaController = controller;
     }
 
     @Override

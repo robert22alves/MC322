@@ -2,7 +2,7 @@ package biblioteca.views;
 
 import java.util.List;
 
-import biblioteca.models.itensPack.ItemMultimidia;
+import biblioteca.models.acervo.itensMultimidia.ItemMultimidia;
 
 public interface BibliotecaView {
     void mostrarItensDisponiveis(List<ItemMultimidia> itens);

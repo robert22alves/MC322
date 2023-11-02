@@ -3,13 +3,13 @@ package biblioteca.views;
 import java.util.List;
 
 import biblioteca.controllers.MembroController;
-import biblioteca.models.membrosPack.Membro;
+import biblioteca.models.membros.Membro;
 
 public class MembroViewImpl implements MembroView {
     private MembroController membroController;
 
     public MembroViewImpl(MembroController controller) {
-        membroController = controller;
+        this.membroController = controller;
     }
 
     @Override

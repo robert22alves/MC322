@@ -1,8 +1,10 @@
 package main;
 
 import biblioteca.controllers.*;
-import biblioteca.models.itensPack.ItemMultimidia;
-import biblioteca.models.membrosPack.Membro;
+import biblioteca.models.membros.Membro;
+import biblioteca.models.acervo.itensMultimidia.ItemMultimidia;
+import biblioteca.models.exceptions.ExcecaoDadosInvalidos;
+import biblioteca.models.funcionarios.Usuario;
 import biblioteca.views.*;
 
 import java.util.List;
@@ -13,50 +15,72 @@ public class BibliotecaMain {
     private static MembroController membroController;
     private static RelatorioController relatorioController;
 
+    private static BibliotecaView bibliotecaView;
+    private static MembroView membroView;
+    private static RelatorioView relatorioView;
+
+    private static Usuario usuario;
+    private static int opcao = 0;
+
     public static void main(String[] args) {
         bibliotecaController = new BibliotecaControllerImpl();
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
 
-        BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
-        MembroView membroView = new MembroViewImpl(membroController);
-        //RelatorioView relatorioView = new RelatorioViewImpl(relatorioController);
+        bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
+        membroView = new MembroViewImpl(membroController);
+        relatorioView = new RelatorioViewImpl(relatorioController);
 
         Scanner scanner = new Scanner(System.in);
         
         while (true) {
             System.out.println("---- Menu Biblioteca ----");
             System.out.println();
-            System.out.println("1. Gerenciamento de Itens");
-            System.out.println("2. Gerenciamento de Membros");
-            System.out.println("3. Geração de Relatórios e Estatísticas");
-            System.out.println("4. Administração de Funcionários");
-            System.out.println("5. Sair");
+            System.out.println("1. Entrar");
+            System.out.println("2. Sair");
             System.out.println();
             System.out.println();
             System.out.print("Escolha uma opção: ");
 
-            int opcao = scanner.nextInt();
+            opcao = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcao) {
                 case 1:
-                    // Menu de Gerenciamento de Itens
-                    menuGerenciamentoItens(scanner, bibliotecaView);
+                    // Entrar no Sistema
+                    System.out.println();
+                    System.out.print("Usuario: ");
+                    String login = scanner.nextLine();
+                    System.out.print("Senha: ");
+                    String senha = scanner.nextLine();
+                    System.out.println();
+
+                    try {
+                        usuario = bibliotecaController.getLogins().buscarChave(login);
+                        if (usuario == null) {
+                            throw new ExcecaoDadosInvalidos("Usuario ou Senha incorretos");
+                        }
+                        else if (usuario.getSenha().compareTo(senha) != 0) {
+                            throw new ExcecaoDadosInvalidos("Usuario ou Senha incorretos");
+                        }
+
+                    } catch (ExcecaoDadosInvalidos e) {
+                        System.err.println(e.getMessage());
+                        System.out.println();
+                        continue;
+                    }
+
+                    menuBiblioteca(scanner);
+
+                    if(opcao == 6) {
+                        System.out.println("Saindo do menu. Até logo!");
+                        scanner.close();
+                        return;
+                    }
+
                     break;
                 case 2:
-                    // Menu de Gerenciamento de Membros
-                    menuGerenciamentoMembros(scanner, membroView);
-                    break;
-                case 3:
-                    // Menu de Geração de Relatórios e Estatísticas
-                    menuRelatoriosEstatisticas(scanner/*, relatorioView*/);
-                    break;
-                case 4:
-                    // Menu de Administração de Funcionários
-                    menuAdministracaoFuncionarios(scanner);
-                    break;
-                case 5:
+                    // Sair do Sistema
                     System.out.println("Saindo do menu. Até logo!");
                     scanner.close();
                     return;
@@ -66,7 +90,52 @@ public class BibliotecaMain {
         }
     }
 
-    private static void menuGerenciamentoItens(Scanner scanner, BibliotecaView bibliotecaView) {
+    private static void menuBiblioteca(Scanner scanner) {
+        while (true) {
+            System.out.println("---- Menu Biblioteca ----");
+            System.out.println();
+            System.out.println("1. Gerenciamento de Itens");
+            System.out.println("2. Gerenciamento de Membros");
+            System.out.println("3. Geração de Relatórios e Estatísticas");
+            System.out.println("4. Administração de Funcionários");
+            System.out.println("5. Logoff");
+            System.out.println("6. Sair");
+            System.out.println();
+            System.out.println();
+            System.out.print("Escolha uma opção: ");
+
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    // Menu de Gerenciamento de Itens
+                    menuGerenciamentoItens(scanner);
+                    break;
+                case 2:
+                    // Menu de Gerenciamento de Membros
+                    menuGerenciamentoMembros(scanner);
+                    break;
+                case 3:
+                    // Menu de Geração de Relatórios e Estatísticas
+                    menuRelatoriosEstatisticas(scanner);
+                    break;
+                case 4:
+                    // Menu de Administração de Funcionários
+                    menuAdministracaoFuncionarios(scanner);
+                    break;
+                case 5:
+                    System.out.println();
+                    return;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha novamente.");
+            }
+        }
+    }
+
+    private static void menuGerenciamentoItens(Scanner scanner) {
         while (true) {
             System.out.println("---- Menu Gerenciamento de Itens ----");
             System.out.println();
@@ -82,10 +151,10 @@ public class BibliotecaMain {
             System.out.println();
             System.out.print("Escolha uma opção: ");
 
-            int opcaoItens = scanner.nextInt();
+            opcao = scanner.nextInt();
             scanner.nextLine();
 
-            switch (opcaoItens) {
+            switch (opcao) {
                 case 1:
                     List<ItemMultimidia> itens = bibliotecaController.consultarItensDisponiveis();
                     bibliotecaView.mostrarItensDisponiveis(itens);
@@ -116,7 +185,7 @@ public class BibliotecaMain {
         }
     }
 
-    private static void menuGerenciamentoMembros(Scanner scanner, MembroView membroView) {
+    private static void menuGerenciamentoMembros(Scanner scanner) {
         while (true) {
             System.out.println("---- Menu Gerenciamento de Membros ----");
             System.out.println();
@@ -129,10 +198,10 @@ public class BibliotecaMain {
             System.out.println();
             System.out.print("Escolha uma opção: ");
 
-            int opcaoMembros = scanner.nextInt();
+            opcao = scanner.nextInt();
             scanner.nextLine();
 
-            switch (opcaoMembros) {
+            switch (opcao) {
                 case 1:
                     List<Membro> membros = membroController.listarMembros();
                     membroView.mostrarListaMembros(membros);
@@ -154,7 +223,7 @@ public class BibliotecaMain {
         }
     }
 
-    private static void menuRelatoriosEstatisticas(Scanner scanner/*, RelatorioView relatorioView*/) {
+    private static void menuRelatoriosEstatisticas(Scanner scanner) {
         while (true) {
             System.out.println("---- Menu Relatórios e Estatísticas ----");
             System.out.println();
@@ -169,10 +238,10 @@ public class BibliotecaMain {
             System.out.println();
             System.out.print("Escolha uma opção: ");
 
-            int opcaoRelatorios = scanner.nextInt();
+            opcao = scanner.nextInt();
             scanner.nextLine();
 
-            switch (opcaoRelatorios) {
+            switch (opcao) {
                 case 1:
                     gerarRelatorioAtividadesMembros();
                     break;
@@ -211,10 +280,10 @@ public class BibliotecaMain {
             System.out.println();
             System.out.print("Escolha uma opção: ");
 
-            int opcaoFuncionarios = scanner.nextInt();
+            opcao = scanner.nextInt();
             scanner.nextLine();
 
-            switch (opcaoFuncionarios) {
+            switch (opcao) {
                 case 1:
                     // Menu de Administração de Administradores
                     menuAdministradores(scanner);
