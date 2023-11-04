@@ -160,7 +160,15 @@ public class BibliotecaMain {
                     bibliotecaView.mostrarItensDisponiveis(itens);
                     break;
                 case 2:
+                    try{
                     adicionarItem(scanner);
+                    }
+                    catch(ExcecaoDadosInvalidos e){
+
+                    }
+                    catch(ExcecaoItemCadastrado e2){
+
+                    }
                     break;
                 case 3:
                     editarItem(scanner);
@@ -169,7 +177,18 @@ public class BibliotecaMain {
                     removerItem(scanner);
                     break;
                 case 5:
+                    try{
                     realizarEmprestimo(scanner);
+                    }
+                    catch(ExcecaoLimiteEmprestimoExcedido t){
+
+                    }
+                    catch(ExcecaoMultaPendente t2){
+
+                    }
+                    catch(ExecaoItemNaoDisponivel t3){
+                        
+                    }
                     break;
                 case 6:
                     realizarRenovacao(scanner);
