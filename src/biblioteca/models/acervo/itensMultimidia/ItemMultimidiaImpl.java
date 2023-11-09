@@ -1,8 +1,9 @@
 package biblioteca.models.acervo.itensMultimidia;
 
 import java.util.ArrayList;
+import biblioteca.models.CSingleton;
 
-public class ItemMultimidiaImpl implements ItemMultimidia{
+public class ItemMultimidiaImpl extends CSingleton implements ItemMultimidia{
     private String titulo;
     private String autor; //Autor, Artista ou Diretor
     private String publicadora; //Editora, Gravadora ou Publicadora
