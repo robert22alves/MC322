@@ -1,7 +1,8 @@
 package biblioteca.models.acervo.itensMultimidia;
 
 import java.util.ArrayList;
-import biblioteca.models.CSingleton;
+
+import biblioteca.models.singleton.CSingleton;
 
 public class ItemMultimidiaImpl extends CSingleton implements ItemMultimidia{
     private String titulo;

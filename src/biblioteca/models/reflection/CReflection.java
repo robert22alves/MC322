@@ -1,6 +1,7 @@
-package biblioteca.models;
+package biblioteca.models.reflection;
 
 import java.lang.reflect.*;
+import java.util.ArrayList;
 
 import biblioteca.models.acervo.itensMultimidia.ItemMultimidia;
 import biblioteca.models.membros.Membro;
@@ -16,8 +17,10 @@ public class CReflection {
                 throw new IllegalArgumentException("Membro ou Item Multimidia");
             }
 
-            Class<?> class1 = object.getClass();
-            for (Field f : class1.getFields()) {
+            Class<?> c = object.getClass();
+            
+            for (Field f : c.getFields()) {
+                f.setAccessible(true);
                 System.out.println(f);
             }
 
@@ -37,8 +40,10 @@ public class CReflection {
                 throw new IllegalArgumentException("Membro ou Item Multimidia");
             }
 
-            Class<?> class1 = object.getClass();
-            for (Method m : class1.getMethods()) {
+            Class<?> c = object.getClass();
+
+            for (Method m : c.getMethods()) {
+                m.setAccessible(true);
                 System.out.println(m);
             }
 
@@ -50,14 +55,14 @@ public class CReflection {
             e.printStackTrace();
         }
     }
-    public static void imprimirLista (Arraylist<?> lista){
+    public static void imprimirLista (ArrayList<?> lista){
         try {
 
             if (!(lista.get(0) instanceof ItemMultimidia || lista.get(0) instanceof Membro || lista.get(0) instanceof Sala || lista.get(0) instanceof Emprestimo)) {
                 throw new IllegalArgumentException("Membro, Item Multimidia, Sala ou Emprestimo");
             }
 
-            Arraylist<?> array1 = lista.getField();
+            ArrayList<?> array1 = lista.getField();
             for (Field a : array1.getField()) {
                 System.out.println(a);
             }

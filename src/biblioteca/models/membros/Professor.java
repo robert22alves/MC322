@@ -2,44 +2,16 @@ package biblioteca.models.membros;
 
 import biblioteca.models.Data;
 
-public class Professor implements Membro{
-    private String nome;
-    private String identificacao;
-    private String endereco;
-    private String contato;
-    private Data dataRegistro;
-
+public class Professor extends MembroImpl{
     private static int limiteEmprestimo = 7;
     private static int prazoEmprestimo = 30;
     private static double multaAtraso = 0.50;
 
     public Professor() {
-        this.nome = null;
-        this.identificacao = null;
-        this.endereco = null;
-        this.contato = null;
-        this.dataRegistro = null;
+        super();
     }
 
     //GETTERS N SETTERS
-    @Override
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public String getIdentificacao() {
-        return identificacao;
-    }
-
-    public void setIdentificacao(String identificacao) {
-        this.identificacao = identificacao;
-    }
-
     @Override
     public int getLimiteEmprestimo() {
         return limiteEmprestimo;
@@ -66,29 +38,4 @@ public class Professor implements Membro{
     public static void setMultaAtraso(double multaAtraso) {
         Professor.multaAtraso = multaAtraso;
     }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
-        this.contato = contato;
-    }
-
-    public Data getDataRegistro() {
-        return dataRegistro;
-    }
-
-    public void setDataRegistro(Data dataRegistro) {
-        this.dataRegistro = dataRegistro;
-    }
-
 }
