@@ -47,5 +47,10 @@ public class VideoDVD extends ItemMultimidiaImpl{
     public void setNumeroAudios(int numeroAudios) {
         this.numeroAudios = numeroAudios;
     }
+
+    @Override
+    public IItemMultimediaFactory criarItemMultimedia() {
+        return new VideoDVD();
+    }
     
 }

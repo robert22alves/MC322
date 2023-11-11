@@ -37,5 +37,10 @@ public class Livro extends ItemMultimidiaImpl{
     public void setLocalização(String localização) {
         this.localização = localização;
     }
+
+    @Override
+    public IItemMultimediaFactory criarItemMultimedia() {
+        return new Livro();
+    }
     
 }
