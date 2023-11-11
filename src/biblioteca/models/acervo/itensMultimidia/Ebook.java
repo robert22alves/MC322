@@ -50,4 +50,9 @@ public class Ebook extends ItemMultimidiaImpl{
         this.dataDisponibilidade = dataDisponibilidade;
     }
 
+    @Override
+    public IItemMultimediaFactory criarItemMultimedia() {
+        return new Ebook();
+    }
+
 }

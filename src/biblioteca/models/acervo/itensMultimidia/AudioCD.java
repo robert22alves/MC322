@@ -27,5 +27,10 @@ public class AudioCD extends ItemMultimidiaImpl{
     public void setDuracaoTotal(String duracaoTotal) {
         this.duracaoTotal = duracaoTotal;
     }
+
+    @Override
+    public IItemMultimediaFactory criarItemMultimedia() {
+        return new AudioCD();
+    }
     
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import biblioteca.models.singleton.CSingleton;
 
-public class ItemMultimidiaImpl extends CSingleton implements ItemMultimidia{
+public abstract class ItemMultimidiaImpl extends CSingleton implements IItemMultimediaFactory{
     private String titulo;
     private String autor; //Autor, Artista ou Diretor
     private String publicadora; //Editora, Gravadora ou Publicadora
